@@ -1,4 +1,3 @@
-
 const textInput = document.getElementById("text-input");
 const button = document.getElementById("check-btn");
 const result = document.getElementById("result");
@@ -7,6 +6,7 @@ let reverseWord;
 const createParagraph = () => {
   const paragraph = document.createElement("p");
   result.appendChild(paragraph);
+  result.firstChild.remove();
   return paragraph;
 }
 
@@ -44,4 +44,3 @@ button.addEventListener("click", () => {
   checkPalindrome(createdParagraph, paintWord)
   }
 })
-
