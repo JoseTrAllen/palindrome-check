@@ -2,44 +2,46 @@
 const textInput = document.getElementById("text-input");
 const button = document.getElementById("check-btn");
 const result = document.getElementById("result");
-const paragraph = document.createElement("p");
 let reverseWord;
-let original;
-
-const alertMessage = () => {
-  if (!textInput.value) {
-    alert("Please input a value")
-  }
-}
 
 const createParagraph = () => {
+  const paragraph = document.createElement("p");
   result.appendChild(paragraph);
+  return paragraph;
 }
 
-const inputWord = () => {
-  original = textInput.value;
+const originalInputWord = () => {
+  let originalWord = textInput.value;
+  return originalWord;
+}
+
+const inputWord = (paragraph) => {
   paragraph.innerText = textInput.value.replace(/[^A-Za-z0-9]/gi, '').toLowerCase();
   textInput.value = "";
 }
 
-const convertWord = () => {
-  reverseWord = paragraph.innerText.split("").reverse().join("");
+const convertWord = (paragraph) => {
+  return reverseWord = paragraph.innerText.split("").reverse().join("");
 }
 
-const checkPalindrome = () => {
-
+const checkPalindrome = (paragraph, originalWord) => {
   if (paragraph.innerText === reverseWord) {
-    paragraph.innerText = `${original} is a palindrome`
+    paragraph.innerText = `${originalWord} is a palindrome`
   } else {
-    paragraph.innerText = `${original} is not a palindrome`;
+    paragraph.innerText = `${originalWord} is not a palindrome`;
   }
 }
 
 button.addEventListener("click", () => {
-  alertMessage()
-  createParagraph()
-  inputWord()
-  convertWord()
-  checkPalindrome()
+
+  if (!textInput.value) {
+    alert("Please input a value")
+  } else {
+  const createdParagraph = createParagraph();
+  const paintWord = originalInputWord();
+  inputWord(createdParagraph)
+  convertWord(createdParagraph)
+  checkPalindrome(createdParagraph, paintWord)
+  }
 })
 
